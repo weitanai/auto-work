@@ -4,7 +4,7 @@
   "title": "auto-work",
   "description": "Interact with OpenAI's auto-work API directly from your command bar",
   "icon": "icon.png",
-  "author": "abielzulio",
+  "author": "weitanai",
   "contributors": [
     "timolins",
     "shichongrui",
