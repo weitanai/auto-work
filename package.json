@@ -2,41 +2,148 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "auto-work",
   "title": "auto-work",
-  "description": "auto-work",
-  "icon": "command-icon.png",
-  "author": "weitanai",
+  "description": "Interact with OpenAI's auto-work API directly from your command bar",
+  "icon": "icon.png",
+  "author": "abielzulio",
+  "contributors": [
+    "timolins",
+    "shichongrui",
+    "pomdtr"
+  ],
   "categories": [
-    "Applications"
+    "Applications",
+    "Productivity",
+    "Developer Tools",
+    "Web",
+    "Fun",
+    "Finance",
+    "Other"
   ],
   "license": "MIT",
   "commands": [
     {
-      "name": "ai",
-      "title": "Query OpenAI GPT",
-      "description": "Interact with OpenAI GPT AI",
-      "mode": "view",
-      "preferences": [
+      "name": "ask",
+      "title": "Ask Question",
+      "subtitle": "auto-work",
+      "description": "Ask auto-work via Raycast",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "api",
+      "label": "Open AI API",
+      "description": "Enter your personal Open AI API",
+      "type": "password",
+      "title": "API",
+      "required": true
+    },
+    {
+      "name": "isAutoLoad",
+      "label": "Enable auto-load selected text",
+      "description": "Load selected text from your frontmost application to the question bar automatically",
+      "type": "checkbox",
+      "title": "Auto-load",
+      "default": false,
+      "required": false
+    },
+    {
+      "name": "isAutoFullInput",
+      "label": "Enable full text input initially",
+      "description": "Use full text input form when asking question for the first time",
+      "type": "checkbox",
+      "title": "Use Full Text Input",
+      "default": false,
+      "required": false
+    },
+    {
+      "name": "isAutoTTS",
+      "label": "Enable text-to-speech for every response",
+      "description": "Enable auto TTS everytime you get a generated answer",
+      "type": "checkbox",
+      "title": "Text-to-Speech",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "useProxy",
+      "label": "Enable proxy for each request",
+      "description": "Each request will be passed through the proxy",
+      "type": "checkbox",
+      "title": "Use Proxy",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "proxyProtocol",
+      "description": "Each request will be passed through the proxy",
+      "type": "dropdown",
+      "title": "Proxy Protocol",
+      "data": [
         {
-          "name": "openAiApiKey",
-          "title": "OpenAI API Key",
-          "description": "API Key is used to authenticate with OpenAI API",
-          "type": "password",
-          "required": true
+          "title": "HTTP",
+          "value": "http"
+        },
+        {
+          "title": "HTTPs",
+          "value": "https"
+        },
+        {
+          "title": "Socks4",
+          "value": "socks4"
+        },
+        {
+          "title": "Socks5",
+          "value": "socks5"
         }
-      ]
+      ],
+      "required": false,
+      "default": "http"
+    },
+    {
+      "name": "proxyHost",
+      "description": "Sever address of the proxy",
+      "type": "textfield",
+      "title": "Proxy Host",
+      "required": false
+    },
+    {
+      "name": "proxyPort",
+      "description": "Server port of the proxy",
+      "type": "textfield",
+      "title": "Proxy Port",
+      "required": false
+    },
+    {
+      "name": "proxyUsername",
+      "description": "Leave empty if doesn't have",
+      "type": "textfield",
+      "title": "Proxy Username",
+      "required": false
+    },
+    {
+      "name": "proxyPassword",
+      "description": "Leave empty if doesn't have",
+      "type": "password",
+      "title": "Proxy Password",
+      "required": false
     }
   ],
   "dependencies": {
-    "@raycast/api": "^1.51.2",
-    "@raycast/utils": "^1.4.8",
+    "@raycast/api": "^1.47.0",
+    "@types/uuid": "^9.0.0",
     "axios": "^1.4.0",
-    "openai": "^3.2.1"
+    "openai": "^3.2.1",
+    "say": "^0.16.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@raycast/eslint-config": "1.0.5",
     "@types/node": "18.8.3",
     "@types/react": "18.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.5.1",
     "typescript": "^4.4.3"
   },
@@ -45,6 +152,6 @@
     "dev": "ray develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",
-    "publish": "npx @raycast/api@latest publish"
+    "publish": "ray publish"
   }
 }
