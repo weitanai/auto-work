@@ -4,8 +4,9 @@
 
 - Profeesional & efficent communication
 - Efficient to work
+- High information density
 
-# feature
+# Feature
 
 - Select anywhere
 - Use chatgpt prompt rewrite this select
