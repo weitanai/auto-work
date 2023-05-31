@@ -2,24 +2,23 @@
 
 #  Motivation
 
-- profeesional  & efficent communication
-- efficient to work
+- Profeesional & efficent communication
+- Efficient to work
 
 # feature
 
-- select anywhere
-- use chatgpt prompt rewrite this select
-- user click enter rewrite select text
+- Select anywhere
+- Use chatgpt prompt rewrite this select
+- User click enter rewrite select text
 
-# 3 Technical solutions
+# Technical solutions
 
-- tech stack: react + openai  + @raycast/api  + axios;
+- Tech stack: react + openai  + @raycast/api  + axios;
 
 ### Todos
-
-- [x]  init project
-- [x]  write gpt prompt
-- [x]  get select text  and  use gpt prompt rewrite it;
-- [ ]  unit test
-- [ ]  reduce use api token
-- [ ]  user custom tokens
+- [x]  Init project
+- [x]  Write GPT prompt
+- [x]  Get selected text and rewrite it using the GPT prompt
+- [ ]  Unit test
+- [ ]  Reduce API token usage
+- [ ]  Use custom user tokens
