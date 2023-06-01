@@ -3,18 +3,17 @@ import { useCallback, useMemo, useState } from "react";
 import say from "say";
 import { v4 as uuidv4 } from "uuid";
 import { Chat, ChatHook, Model } from "../type";
-import { chatTransfomer } from "../utils";
 import { useAutoTTS } from "./useAutoTTS";
 import { useChatGPT } from "./useChatGPT";
 import { useHistory } from "./useHistory";
 import { useProxy } from "./useProxy";
 
-export function useChat<T extends Chat>(props: T[]): ChatHook {
+export function useImprove<T extends Chat>(props: T[]): ChatHook {
   const [data, setData] = useState<Chat[]>(props);
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [isLoading, setLoading] = useState<boolean>(false);
 
-  const history = useHistory();
+const history = useHistory();
   const isAutoTTS = useAutoTTS();
   const proxy = useProxy();
 
@@ -43,18 +42,19 @@ export function useChat<T extends Chat>(props: T[]): ChatHook {
     }, 30);
     console.log('-model prompt', model.prompt);
     await chatGPT
-      .createChatCompletion(
+      .createCompletion(
         {
           model: model.option,
           temperature: model.temperature,
-          messages: [...chatTransfomer(data, model.prompt), { role: "user", content: question }],
+          prompt: model.prompt,
         },
         {
           proxy,
         }
       )
       .then((res) => {
-        chat = { ...chat, answer: res.data.choices.map((x) => x.message)[0]?.content ?? "" };
+        console.log('----res', res.data)
+        chat = { ...chat, answer: res.data.choices[0].text || ''};
         if (typeof chat.answer === "string") {
           setLoading(false);
           clearSearchBar();

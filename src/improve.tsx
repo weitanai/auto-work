@@ -1,10 +1,10 @@
-import { ActionPanel, getPreferenceValues, List, useNavigation } from "@raycast/api";
+import { ActionPanel, getPreferenceValues, List, useNavigation, getSelectedText, showToast, Toast } from "@raycast/api";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { PrimaryAction } from "./actions";
 import { FormInputActionSection } from "./actions/form-input";
 import { PreferencesActionSection } from "./actions/preferences";
-import { useChat } from "./hooks/useChat";
+import { useImprove } from "./hooks/useImprove";
 import { useConversations } from "./hooks/useConversations";
 import { DEFAULT_MODEL, useModel } from "./hooks/useModel";
 import { useQuestion } from "./hooks/useQuestion";
@@ -13,15 +13,38 @@ import { ChatView } from "./views/chat";
 import { ModelDropdown } from "./views/model/dropdown";
 import { QuestionForm } from "./views/question/form";
 
-export default function Ask(props: { conversation?: Conversation }) {
+async function getSelectText() {
+  try {
+    const selectedText = await getSelectedText();
+    return selectedText
+  } catch (error) {
+    await showToast({
+      style: Toast.Style.Failure,
+      title: "Cannot transform text",
+      message: String(error),
+    });
+  }
+}
+
+export default function Improve(props: { conversation?: Conversation }) {
   const conversations = useConversations();
   const models = useModel();
 
-  const chats = useChat<Chat>(props.conversation ? props.conversation.chats : []);
+  const chats = useImprove<Chat>(props.conversation ? props.conversation.chats : []);
   const question = useQuestion({ initialQuestion: "", disableAutoLoad: props.conversation ? true : false });
 
+  useEffect(() => { 
+    const setSelectText = function() {
+      getSelectText().then((selectedText) => {
+        if (selectedText) {
+          question.update(selectedText)
+        }
+      })
+    }
+    setSelectText();
+  }, []);
   const [conversation, setConversation] = useState<Conversation>(
-    props.conversation ?? {
+    {
       id: uuidv4(),
       chats: [],
       model: DEFAULT_MODEL,
@@ -30,6 +53,7 @@ export default function Ask(props: { conversation?: Conversation }) {
       created_at: new Date().toISOString(),
     }
   );
+  console.log('---init', conversation);
 
   const [isLoading, setLoading] = useState<boolean>(true);
 
@@ -78,7 +102,7 @@ export default function Ask(props: { conversation?: Conversation }) {
 
   useEffect(() => {
     if (models.data && conversation.chats.length === 0) {
-      const defaultUserModel = models.data.find((x) => x.id === DEFAULT_MODEL.id) ?? conversation.model;
+      const defaultUserModel = conversation.model;
       setConversation({ ...conversation, model: defaultUserModel, updated_at: new Date().toISOString() });
     }
   }, [models.data]);
@@ -98,7 +122,7 @@ export default function Ask(props: { conversation?: Conversation }) {
   }, [selectedModelId]);
 
   const getActionPanel = (question: string, model: Model) => (
-    <ActionPanel>
+    <ActionPanel> 
       <PrimaryAction title="Get Answer" onAction={() => chats.ask(question, model)} />
       <FormInputActionSection
         initialQuestion={question}
@@ -119,7 +143,7 @@ export default function Ask(props: { conversation?: Conversation }) {
       isLoading={isLoading ? isLoading : question.isLoading ? question.isLoading : chats.isLoading}
       onSearchTextChange={question.update}
       throttle={false}
-      navigationTitle={"Ask"}
+      navigationTitle={"Improve"}
       actions={
         !question.data ? (
           <ActionPanel>
@@ -145,7 +169,6 @@ export default function Ask(props: { conversation?: Conversation }) {
           chats.setSelectedChatId(id);
         }
       }}
-      searchBarPlaceholder={chats.data.length > 0 ? "Ask another question..." : "Ask a question..."}
     >
       <ChatView
         data={chats.data}

@@ -2,12 +2,17 @@ import { LocalStorage, showToast, Toast } from "@raycast/api";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Model, ModelHook } from "../type";
 
+
+export const PromptCollection = {
+    improve:'Your task is to rephrase the given statement in written English with clear logic and high information density.'
+}
+
 export const DEFAULT_MODEL: Model = {
   id: "default",
   updated_at: new Date().toISOString(),
   created_at: new Date().toISOString(),
   name: "Default",
-  prompt: "You are a helpful assistant.",
+  prompt: PromptCollection.improve,
   option: "gpt-3.5-turbo",
   temperature: 1,
   pinned: false,

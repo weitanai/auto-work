@@ -27,6 +27,13 @@
       "subtitle": "auto-work",
       "description": "Ask auto-work via Raycast",
       "mode": "view"
+    },
+    {
+      "name": "improve",
+      "title": "Improve Write",
+      "subtitle": "auto-work",
+      "description": "Ask auto-work via Raycast",
+      "mode": "view"
     }
   ],
   "preferences": [
