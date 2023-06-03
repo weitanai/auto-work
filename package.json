@@ -5,6 +5,12 @@
   "description": "Interact with OpenAI's auto-work API directly from your command bar",
   "icon": "icon.png",
   "author": "weitanai",
+  "homepage": "https://github.com/weitanai/auto-work#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weitanai/auto-work.git"
+  },
+  "bugs": "https://github.com/weitanai/auto-work/issues",
   "contributors": [
     "timolins",
     "shichongrui",
@@ -24,6 +30,13 @@
     {
       "name": "ask",
       "title": "Ask Question",
+      "subtitle": "auto-work",
+      "description": "Ask auto-work via Raycast",
+      "mode": "view"
+    },
+    {
+      "name": "view",
+      "title": "View Answer",
       "subtitle": "auto-work",
       "description": "Ask auto-work via Raycast",
       "mode": "view"

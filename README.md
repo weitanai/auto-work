@@ -1,25 +1,39 @@
 # auto-work
 
-#  Motivation
+# Motivation
 
-- Profeesional & efficent communication
-- Efficient to work
-- High information density
+- Clear and concise writing
+- Attention to detail
+- Creative problem solving
+- Collaborative approach to work
+- Adaptable and flexible mindset
+- Time management and prioritization skills
+- Strong work ethic and dedication to meeting deadlines
+- Continuous learning and improvement mindset.
 
 # Feature
 
-- Select anywhere
-- Use chatgpt prompt rewrite this select
-- User click enter rewrite select text
+- Improve write
+- Summary text
+- Ask question an get answer
 
 # Technical solutions
 
 - Tech stack: react + openai  + @raycast/api  + axios;
 
-### Todos
-- [x]  Init project
-- [x]  Write GPT prompt
-- [x]  Get selected text and rewrite it using the GPT prompt
-- [ ]  Unit test
-- [ ]  Reduce API token usage
-- [ ]  Use custom user tokens
+
+# How to use 
+
+- Improve write
+![Improve](assets/improve.png)
+
+
+
+- Summary text
+![Summary](assets/summary.png)
+
+
+
+- Ask question
+![Ask](assets/ask.png)
+

@@ -52,7 +52,7 @@ ${data.answer}
     }
   }, [data]);
 
-  return (
+  return selectedText ? (
     <Detail
       isLoading={isLoading}
       markdown={markdown}
@@ -62,5 +62,5 @@ ${data.answer}
         </ActionPanel>
       }
     />
-  );
+  ) : (<Detail markdown='You can select or copy text to summary' />)
 }

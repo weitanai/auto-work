@@ -3,34 +3,31 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Model, ModelHook } from '../type';
 
 
-const improve = `You are an assistant that revises a user's document to improve its writing quality.
-
-Make sure to:
-
-- Fix spelling and grammar
-- Make sentences more clear and concise
-- Split up run-on sentences
-- Reduce repetition
-- When replacing words, do not make them more complex or difficult than the original
-- If the text contains quotes, repeat the text inside the quotes verbatim
-- Do not change the meaning of the text
-- Do not remove any markdown formatting in the text, like headers, bullets, or checkboxes
-- Do not use overly formal language
-
-Output in markdown format.
-First, detect the language of the document inside <document></document>. If the language is not clear, use English.
-Then, output using the detected language`;
-
-const summarize = `
-You are an assistant helping summarize a document. Use this format, replacing text in brackets with the result. Do not include the brackets in the output: 
-
-Summary in [Identified language of the document]: 
-
-[One-paragaph summary of the document using the identified language.].
-`
 export const PromptCollection = {
-	improve,
-	summarize
+	improve: `You are an assistant that revises a user's document to improve its writing quality.
+
+	Make sure to:
+	
+	- Fix spelling and grammar
+	- Make sentences more clear and concise
+	- Split up run-on sentences
+	- Reduce repetition
+	- When replacing words, do not make them more complex or difficult than the original
+	- If the text contains quotes, repeat the text inside the quotes verbatim
+	- Do not change the meaning of the text
+	- Do not remove any markdown formatting in the text, like headers, bullets, or checkboxes
+	- Do not use overly formal language
+	
+	Output in markdown format.
+	First, detect the language of the document. If the language is not clear, use English.
+	Then, output using the detected language`,
+	summarize:`
+	You are an assistant helping summarize a document. Use this format, replacing text in brackets with the result. Do not include the brackets in the output: 
+	
+	Summary in [Identified language of the document]: 
+	
+	[One-paragaph summary of the document using the identified language.].
+	 `
 };
 
 export const DEFAULT_MODEL: Model = {

@@ -13,18 +13,6 @@ import { ChatView } from './views/chat';
 import { ModelDropdown } from './views/model/dropdown';
 import { QuestionForm } from './views/question/form';
 
-async function getSelectText() {
-  try {
-    const selectedText = await getSelectedText();
-    return selectedText;
-  } catch (error) {
-    await showToast({
-      style: Toast.Style.Failure,
-      title: 'Cannot transform text',
-      message: String(error),
-    });
-  }
-}
 
 export default function Ask(props: { conversation?: Conversation }) {
   const conversations = useConversations();
@@ -43,16 +31,7 @@ export default function Ask(props: { conversation?: Conversation }) {
       created_at: new Date().toISOString(),
     }
   );
-  useEffect(() => {
-    const setSelectText = function () {
-      getSelectText().then((selectedText) => {
-        if (selectedText) {
-          question.update(selectedText);
-        }
-      });
-    };
-    setSelectText();
-  }, []);
+
   const [isLoading, setLoading] = useState<boolean>(true);
 
   const [selectedModelId, setSelectedModelId] = useState<string>(

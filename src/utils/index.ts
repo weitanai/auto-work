@@ -16,13 +16,12 @@ export function chatTransfomer(chat: Chat[], prompt: string): Message[] {
 
 export async function getSelectText() {
 	try {
-	  const selectedText = await getSelectedText();
-	  return selectedText;
+		return await getSelectedText();
 	} catch (error) {
-	  await showToast({
-		style: Toast.Style.Failure,
-		title: 'Cannot transform text',
-		message: String(error),
-	  });
+		await showToast({
+			style: Toast.Style.Failure,
+			title: 'Cannot transform text',
+			message: String(error),
+		});
 	}
-  }
+}
