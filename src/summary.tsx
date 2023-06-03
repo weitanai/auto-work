@@ -1,9 +1,14 @@
-import { ActionPanel, Detail, Action } from '@raycast/api';
+import {
+  ActionPanel,
+  Detail,
+  Action,
+} from '@raycast/api';
 import { useEffect, useState } from 'react';
 import { ImproveWrite } from './type';
 import { useQueryText } from './hooks/useQueryText';
 import { SUMMARY_MODEL } from './hooks/useModel';
 import {getSelectText} from './utils';
+
 
 export default function Summary(props: { improveWrite?: ImproveWrite }) {
   const [selectedText, setSelectedText] = useState<string>('');
@@ -28,7 +33,7 @@ export default function Summary(props: { improveWrite?: ImproveWrite }) {
   useEffect(() => {
     const querySelectedText = async () => {
       if (selectedText) {
-        await chats.ask(selectedText, SUMMARY_MODEL, 'improve');
+        await chats.ask(selectedText, SUMMARY_MODEL, 'summary');
       }
     };
     querySelectedText();
@@ -38,12 +43,9 @@ export default function Summary(props: { improveWrite?: ImproveWrite }) {
     if (data && data.answer) {
       const markdown = `
 ### Your Text
-
 ${selectedText}
 
-
-### Rephrase Text
-
+### Summary Text
 ${data.answer}
 `;
       setMarkdown(markdown);

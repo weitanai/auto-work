@@ -1,7 +1,7 @@
-import { Action, ActionPanel, Form, showToast, Toast } from "@raycast/api";
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { Model, ModelHook } from "../../type";
+import { Action, ActionPanel, Form, showToast, Toast } from '@raycast/api';
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { Model, ModelHook } from '../../type';
 
 export const ModelForm = (props: { model?: Model; use: { models: ModelHook }; name?: string }) => {
   const { use } = props;
@@ -9,32 +9,32 @@ export const ModelForm = (props: { model?: Model; use: { models: ModelHook }; na
   const [data, setData] = useState<Model>(
     props?.model ?? {
       id: uuidv4(),
-      updated_at: "",
+      updated_at: '',
       created_at: new Date().toISOString(),
-      name: props?.name ?? "",
-      prompt: "",
-      option: "gpt-3.5-turbo",
+      name: props?.name ?? '',
+      prompt: '',
+      option: 'gpt-3.5-turbo',
       temperature: 1,
       pinned: false,
     }
   );
 
   const [error, setError] = useState<{ name: string; prompt: string; option: string; temperature: string }>({
-    name: "",
-    prompt: "",
-    option: "",
-    temperature: "",
+    name: '',
+    prompt: '',
+    option: '',
+    temperature: '',
   });
 
   const onSubmit = async (model: Model) => {
     let updatedModel: Model = { ...model, updated_at: new Date().toISOString() };
-    if (typeof updatedModel.temperature === "string") {
+    if (typeof updatedModel.temperature === 'string') {
       const toast = await showToast({
-        title: "Update your model...",
+        title: 'Update your model...',
         style: Toast.Style.Animated,
       });
       updatedModel = { ...updatedModel, temperature: Number(updatedModel.temperature) };
-      toast.title = "Model updated!";
+      toast.title = 'Model updated!';
       toast.style = Toast.Style.Success;
     }
     if (props.model) {
@@ -63,10 +63,10 @@ export const ModelForm = (props: { model?: Model; use: { models: ModelHook }; na
         onChange={(value) => setData({ ...data, name: value })}
         onBlur={(event) => {
           if (event.target.value?.length == 0) {
-            setError({ ...error, name: "Required" });
+            setError({ ...error, name: 'Required' });
           } else {
             if (error.name && error.name.length > 0) {
-              setError({ ...error, name: "" });
+              setError({ ...error, name: '' });
             }
           }
         }}
@@ -80,10 +80,10 @@ export const ModelForm = (props: { model?: Model; use: { models: ModelHook }; na
         onChange={(value) => setData({ ...data, prompt: value })}
         onBlur={(event) => {
           if (event.target.value?.length == 0) {
-            setError({ ...error, prompt: "Required" });
+            setError({ ...error, prompt: 'Required' });
           } else {
             if (error.prompt && error.prompt.length > 0) {
-              setError({ ...error, prompt: "" });
+              setError({ ...error, prompt: '' });
             }
           }
         }}
@@ -99,15 +99,15 @@ export const ModelForm = (props: { model?: Model; use: { models: ModelHook }; na
         }}
         onBlur={(event) => {
           if (event.target.value?.length == 0) {
-            setError({ ...error, temperature: "Required" });
+            setError({ ...error, temperature: 'Required' });
           } else {
             if (Number(event.target.value ?? 0) < 0) {
-              setError({ ...error, temperature: "Minimal value is 0" });
+              setError({ ...error, temperature: 'Minimal value is 0' });
             } else if (Number(event.target.value ?? 0) > 2) {
-              setError({ ...error, temperature: "Maximal value is 2" });
+              setError({ ...error, temperature: 'Maximal value is 2' });
             } else {
               if (error.temperature && error.temperature.length > 0) {
-                setError({ ...error, temperature: "" });
+                setError({ ...error, temperature: '' });
               }
             }
           }
@@ -124,7 +124,7 @@ export const ModelForm = (props: { model?: Model; use: { models: ModelHook }; na
           <Form.Dropdown.Item value={option} title={option} key={option} />
         ))}
       </Form.Dropdown>
-      {data.id !== "default" && (
+      {data.id !== 'default' && (
         <Form.Checkbox
           id="pinned"
           title="Pinned"

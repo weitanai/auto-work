@@ -1,15 +1,15 @@
-import { Action, ActionPanel, Icon, List, useNavigation } from "@raycast/api";
-import { useState } from "react";
-import { DestructiveAction, PinAction } from "./actions";
-import { PreferencesActionSection } from "./actions/preferences";
-import { DEFAULT_MODEL, useModel } from "./hooks/useModel";
-import { Model } from "./type";
-import { ModelForm } from "./views/model/form";
-import { ModelListItem, ModelListView } from "./views/model/list";
+import { Action, ActionPanel, Icon, List, useNavigation } from '@raycast/api';
+import { useState } from 'react';
+import { DestructiveAction, PinAction } from './actions';
+import { PreferencesActionSection } from './actions/preferences';
+import { DEFAULT_MODEL, useModel } from './hooks/useModel';
+import { Model } from './type';
+import { ModelForm } from './views/model/form';
+import { ModelListItem, ModelListView } from './views/model/list';
 
 export default function Model() {
   const models = useModel();
-  const [searchText, setSearchText] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>('');
   const [selectedModelId, setSelectedModelId] = useState<string | null>(null);
 
   const { push } = useNavigation();
@@ -17,21 +17,21 @@ export default function Model() {
   const getActionPanel = (model: Model) => (
     <ActionPanel>
       <Action
-        title={"Edit Model"}
-        shortcut={{ modifiers: ["cmd"], key: "t" }}
+        title={'Edit Model'}
+        shortcut={{ modifiers: ['cmd'], key: 't' }}
         icon={Icon.Text}
         onAction={() => push(<ModelForm model={model} use={{ models }} />)}
       />
       <Action
-        title={"Create Model"}
-        shortcut={{ modifiers: ["cmd"], key: "t" }}
+        title={'Create Model'}
+        shortcut={{ modifiers: ['cmd'], key: 't' }}
         icon={Icon.Text}
         onAction={() => push(<ModelForm name={searchText} use={{ models }} />)}
       />
-      {model.id !== "default" && (
+      {model.id !== 'default' && (
         <>
           <PinAction
-            title={model.pinned ? "Unpin Model" : "Pin Model"}
+            title={model.pinned ? 'Unpin Model' : 'Pin Model'}
             isPinned={model.pinned}
             onAction={() => models.update({ ...model, pinned: !model.pinned })}
           />
@@ -39,7 +39,7 @@ export default function Model() {
             <DestructiveAction
               title="Remove"
               dialog={{
-                title: "Are you sure you want to remove this model from your collection?",
+                title: 'Are you sure you want to remove this model from your collection?',
               }}
               onAction={() => models.remove(model)}
             />
@@ -57,7 +57,7 @@ export default function Model() {
   const filteredModels = sortedModels
     .filter((value, index, self) => index === self.findIndex((model) => model.id === value.id))
     .filter((model) => {
-      if (searchText === "") {
+      if (searchText === '') {
         return true;
       }
       return (
@@ -77,7 +77,7 @@ export default function Model() {
       isLoading={models.isLoading}
       filtering={false}
       throttle={false}
-      navigationTitle={"Models"}
+      navigationTitle={'Models'}
       selectedItemId={selectedModelId || undefined}
       onSelectionChange={(id) => {
         if (id !== selectedModelId) {

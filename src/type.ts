@@ -1,4 +1,4 @@
-import type { ChatCompletionRequestMessage } from "openai";
+import type { ChatCompletionRequestMessage } from 'openai';
 
 export type Set<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -27,13 +27,22 @@ export interface Conversation {
   pinned: boolean;
 }
 
+export interface ImproveWrite {
+  id: string;
+  model: Model;
+  chats: Chat;
+  updated_at: string;
+  created_at: string;
+  pinned: boolean;
+}
+
 export interface Model {
   id: string;
   updated_at: string;
   created_at: string;
   name: string;
   prompt: string;
-  option: "gpt-3.5-turbo" | "gpt-3.5-turbo-0301" | string;
+  option: 'gpt-3.5-turbo' | 'gpt-3.5-turbo-0301' | string;
   temperature: number;
   pinned: boolean;
 }
@@ -65,7 +74,7 @@ export type QuestionHook = BaseHook<string> & { update: PromiseFunctionWithOneAr
 
 export type ModelHook = Hook<Model> & {
   update: PromiseFunctionWithOneArg<Model>;
-  option: Model["option"][];
+  option: Model['option'][];
 };
 
 export interface ChatHook {

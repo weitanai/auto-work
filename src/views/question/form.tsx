@@ -1,7 +1,7 @@
-import { Action, ActionPanel, Form, Icon, useNavigation } from "@raycast/api";
-import { useState } from "react";
-import { DEFAULT_MODEL } from "../../hooks/useModel";
-import { QuestionFormProps } from "../../type";
+import { Action, ActionPanel, Form, Icon, useNavigation } from '@raycast/api';
+import { useState } from 'react';
+import { DEFAULT_MODEL } from '../../hooks/useModel';
+import { QuestionFormProps } from '../../type';
 
 export const QuestionForm = ({
   initialQuestion,
@@ -12,13 +12,13 @@ export const QuestionForm = ({
 }: QuestionFormProps) => {
   const { pop } = useNavigation();
 
-  const [question, setQuestion] = useState<string>(initialQuestion ?? "");
+  const [question, setQuestion] = useState<string>(initialQuestion ?? '');
   const [error, setError] = useState<{ question: string }>({
-    question: "",
+    question: '',
   });
 
-  const separateDefaultModel = models.filter((x) => x.id !== "default");
-  const defaultModel = models.find((x) => x.id === "default") ?? DEFAULT_MODEL;
+  const separateDefaultModel = models.filter((x) => x.id !== 'default');
+  const defaultModel = models.find((x) => x.id === 'default') ?? DEFAULT_MODEL;
 
   return (
     <Form
@@ -44,10 +44,10 @@ export const QuestionForm = ({
         value={question}
         onBlur={(event) => {
           if (event.target.value?.length == 0) {
-            setError({ ...error, question: "Required" });
+            setError({ ...error, question: 'Required' });
           } else {
             if (error.question && error.question.length > 0) {
-              setError({ ...error, question: "" });
+              setError({ ...error, question: '' });
             }
           }
         }}

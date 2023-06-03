@@ -1,5 +1,5 @@
-import { List } from "@raycast/api";
-import { Chat } from "../type";
+import { List } from '@raycast/api';
+import { Chat } from '../type';
 
 export const AnswerDetailView = (props: { chat: Chat; markdown?: string | null | undefined }) => {
   const { chat, markdown } = props;

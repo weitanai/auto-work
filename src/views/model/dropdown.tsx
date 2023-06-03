@@ -1,10 +1,10 @@
-import { List } from "@raycast/api";
-import { ChangeModelProp } from "../../type";
+import { List } from '@raycast/api';
+import { ChangeModelProp } from '../../type';
 
 export const ModelDropdown = (props: ChangeModelProp) => {
   const { models, onModelChange, selectedModel } = props;
-  const separateDefaultModel = models.filter((x) => x.id !== "default");
-  const defaultModel = models.find((x) => x.id === "default");
+  const separateDefaultModel = models.filter((x) => x.id !== 'default');
+  const defaultModel = models.find((x) => x.id === 'default');
   return (
     <List.Dropdown
       tooltip="Select Model"

@@ -15,7 +15,7 @@
     "Productivity",
     "Developer Tools",
     "Web",
-    "Fun",
+    "Communication",
     "Finance",
     "Other"
   ],
@@ -29,8 +29,22 @@
       "mode": "view"
     },
     {
+      "name": "model",
+      "title": "Change Model",
+      "subtitle": "auto-work",
+      "description": "Ask auto-work via Raycast",
+      "mode": "view"
+    },
+    {
       "name": "improve",
       "title": "Improve Write",
+      "subtitle": "auto-work",
+      "description": "Ask auto-work via Raycast",
+      "mode": "view"
+    },
+    {
+      "name": "summary",
+      "title": "Summary Text",
       "subtitle": "auto-work",
       "description": "Ask auto-work via Raycast",
       "mode": "view"
@@ -138,6 +152,7 @@
   ],
   "dependencies": {
     "@raycast/api": "^1.47.0",
+    "@raycast/utils": "^1.7.0",
     "@types/uuid": "^9.0.0",
     "axios": "^1.4.0",
     "openai": "^3.2.1",
