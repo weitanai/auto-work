@@ -43,8 +43,8 @@
       "mode": "view"
     },
     {
-      "name": "summary",
-      "title": "Summary Text",
+      "name": "summarize",
+      "title": "Summarize Text",
       "subtitle": "auto-work",
       "description": "Ask auto-work via Raycast",
       "mode": "view"

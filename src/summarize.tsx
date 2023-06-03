@@ -33,7 +33,7 @@ export default function Summary(props: { improveWrite?: ImproveWrite }) {
   useEffect(() => {
     const querySelectedText = async () => {
       if (selectedText) {
-        await chats.ask(selectedText, SUMMARY_MODEL, 'summary');
+        await chats.ask(selectedText, SUMMARY_MODEL, 'summarize');
       }
     };
     querySelectedText();

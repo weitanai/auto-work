@@ -26,7 +26,7 @@ export function useQueryText<T extends Chat>(props: T): any {
 			answer: '',
 			created_at: new Date().toISOString(),
 		};
-		const prompt = promptType === 'summary' ? 'summary' : 'improve';
+		const prompt = promptType === 'summarize' ? 'summarize' : 'improve';
 		const cacheKey = `${prompt}-${question}`;
 		const cachedData = cache.get(cacheKey);
 		if (cachedData) {
@@ -44,7 +44,7 @@ export function useQueryText<T extends Chat>(props: T): any {
 				{
 					model: model.option,
 					temperature: model.temperature,
-					messages: [...chatTransfomer([], prompt || PromptCollection.summary), { role: 'user', content: question }],
+					messages: [...chatTransfomer([], prompt || PromptCollection.summarize), { role: 'user', content: question }],
 				},
 				{
 					proxy,
