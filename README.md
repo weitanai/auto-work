@@ -2,12 +2,8 @@
 
 # Motivation
 
-- Clear and concise writing, Attention to detail
-- Collaborative approach to work
-- Adaptable and flexible mindset
-- Time management and prioritization skills
-- Strong work ethic and dedication to meeting deadlines
-- Continuous learning and improvement mindset.
+- Experience ChatGPT across all websites and app
+- Write improve, work faster and ask questions quicker.
 
 # Feature
 
